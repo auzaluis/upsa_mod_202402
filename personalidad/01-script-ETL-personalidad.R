@@ -47,5 +47,41 @@ ifelse(test = is.na(df$`Escribe tu edad exacta`),
        no = df$`Escribe tu edad exacta`)
 
 
+install.packages("tidyverse")
+library(tidyverse)
+
+df2 <- df |> 
+  mutate(edad2 = ifelse(test = is.na(`Escribe tu edad exacta`),
+                        yes = mean(`Escribe tu edad exacta`, na.rm = T),
+                        no = `Escribe tu edad exacta`)) |> 
+  relocate(edad2, .after = `Escribe tu edad exacta`)
+
+
+### Eliminar | Toda la fila ----
+df2 <- df2 |> na.omit()
+
+
+
+## Estandarización de variables ----
+
+### Normalización ----
+scale(df2$`Escribe tu edad exacta`)
+mean(df2$`Escribe tu edad exacta`)
+
+data.frame(
+  original = df2$`Escribe tu edad exacta`,
+  normalizada = scale(df2$`Escribe tu edad exacta`)
+)
+
+
+df3 <- df2 |> 
+  mutate(edadZ = scale(`Escribe tu edad exacta`)) |> 
+  relocate(edadZ, .after = edad2)
+
+
+
+
+
+
 
 

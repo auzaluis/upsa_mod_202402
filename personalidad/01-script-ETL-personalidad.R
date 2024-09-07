@@ -153,21 +153,40 @@ df5 |> select(contains('edad'))
 
 
 
+## Filtrado de filas ----
+df5 |>
+  select(Sexo) |>
+  filter(Sexo == 'Mujer')
 
+df5 |> 
+  select(Sexo) |> 
+  filter(Sexo != "Mujer")
 
+df5 |> 
+  select(Sexo, `Escribe tu edad exacta`) |> 
+  filter(`Escribe tu edad exacta` > 21)
 
+df5 |> 
+  select(Sexo, `Escribe tu edad exacta`) |> 
+  filter(`Escribe tu edad exacta` <= 21)
 
+df5 |> 
+  select(Sexo, `Escribe tu edad exacta`) |> 
+  filter(between(`Escribe tu edad exacta`, 18, 21))
 
+df5 |> 
+  select(Sexo, `Escribe tu edad exacta`) |> 
+  filter(`Escribe tu edad exacta` %in% 18:21)
 
+df5 |> 
+  select(Sexo, `Escribe tu edad exacta`) |> 
+  filter(`Escribe tu edad exacta` >= 18 &
+           `Escribe tu edad exacta` <= 21)
 
-
-
-
-
-
-
-
-
+df5 |> 
+  select(Sexo, `Escribe tu edad exacta`) |> 
+  filter(`Escribe tu edad exacta` >= 18,
+         `Escribe tu edad exacta` <= 21)
 
 
 

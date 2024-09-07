@@ -99,7 +99,7 @@ df4 <- df3 |>
 
 
 
-### Categorías
+### Categorías ----
 
 unique(df4$`Según tu forma de ser ¿Cuál de las siguientes frases te describe mejor: [No discrimino y trato a todos por igual]`)
 unique(df4[,9])
@@ -112,6 +112,64 @@ ifelse(
   yes = 1,
   no = 0
 )
+
+
+
+# Bucles
+
+## Paso 1: Crear un vector con los nombres de las columnas
+frases <- df4 |> select(starts_with("Según")) |> colnames()
+
+
+## Paso: Ejecutar el bucle
+
+df5 <- df4
+
+for (frase in frases) {
+  
+  df5[,frase] <- ifelse(
+    test = df4[,frase] == "Un poco verdadero" |
+      df4[,frase] == "Totalmente verdadero",
+    yes = 1,
+    no = 0
+  )
+  
+}
+
+
+
+# Tema 03: Manipulación de datos ----
+
+# Convirtiendo el df en un tibble
+df5 <- as_tibble(df5)
+
+## Selección de columas ----
+df5 |> select(Sexo)
+df5 |> select(Sexo, `Escribe tu edad exacta`)
+df5 |> select(-`Marca temporal`)
+df5 |> select(starts_with('edad'))
+df5 |> select(ends_with('00:00'))
+df5 |> select(contains('edad'))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -62,9 +62,9 @@ df2 <- df2 |> na.omit()
 
 
 
-## Estandarización de variables ----
+### Estandarización de variables ----
 
-### Normalización ----
+#### Normalización ----
 scale(df2$`Escribe tu edad exacta`)
 mean(df2$`Escribe tu edad exacta`)
 
@@ -79,7 +79,39 @@ df3 <- df2 |>
   relocate(edadZ, .after = edad2)
 
 
+#### Rango ----
+library(scales)
 
+df3 <- df3 |> 
+  mutate(edadR = rescale(`Escribe tu edad exacta`)) |> 
+  relocate(edadR, .after = edadZ)
+
+
+
+## Agrupaciones ----
+
+### Rangos numéricos ----
+df4 <- df3 |> 
+  mutate(edadGR = cut(`Escribe tu edad exacta`,
+                      breaks = c(-Inf, 18, 21, Inf),
+                      labels = c("18 o menos", "19 a 21", "Más de 21"))) |> 
+  relocate(edadGR, .after = edadR)
+
+
+
+### Categorías
+
+unique(df4$`Según tu forma de ser ¿Cuál de las siguientes frases te describe mejor: [No discrimino y trato a todos por igual]`)
+unique(df4[,9])
+
+
+
+ifelse(
+  test = df4[,9] == "Un poco verdadero" |
+    df4[,9] == "Totalmente verdadero",
+  yes = 1,
+  no = 0
+)
 
 
 

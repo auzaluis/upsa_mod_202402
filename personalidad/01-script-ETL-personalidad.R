@@ -188,7 +188,11 @@ df5 |>
   filter(`Escribe tu edad exacta` >= 18,
          `Escribe tu edad exacta` <= 21)
 
-
+df5 |> 
+  select(Sexo, `Escribe tu edad exacta`) |> 
+  filter(`Escribe tu edad exacta` >= 18,
+         `Escribe tu edad exacta` <= 21,
+         Sexo == "Mujer")
 
 
 

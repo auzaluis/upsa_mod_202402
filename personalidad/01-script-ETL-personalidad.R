@@ -196,5 +196,72 @@ df5 |>
 
 
 
+## Nombre de  columnas----
+
+df6 <- df5
+
+### APPS
+
+#### Paso 1: Crear un vector con los nuevos nombres
+apps <- c("TikTok", "Instagram", "Facebook", "YouTube")
+
+#### Paso 2: Reemplazo
+colnames(df6)[34:37] <- apps
+
+
+
+### Frases
+
+#### Paso 1: Crear un vector con los nuevos nombres
+frases2 <- c(
+  "No discrimino y trato a todos por igual",
+  "Me gusta comprar marcas que representen mi status",
+  "Me preocupa mucho el medio ambiente",
+  "Estudio mucho, doy mi mayor esfuerzo",
+  "Busco el éxito sin importar lo que deba sacrificar",                           
+  "Trato de vestir sencillo para no presumir",
+  "Creo que la vida se trata de tomar riesgos",
+  "Busco hacer cosas emocionantes para no aburrirme",
+  "En mi casa, la familia es muy importante, por eso paso mucho tiempo con ellos",
+  "Tener dinero es clave para ser respetado",
+  "Me cuesta mucho lidiar con gente que opina estupideces",
+  "La tradición y religión ayudan a distinguir lo bueno de lo malo",
+  "El dinero va y viene, trato de no cuidarlo mucho, más bien lo disfruto",
+  "Hay que respetar a los adultos, aunque algunos no sean muy respetuosos",
+  "Me gusta comer sano y estar en forma",
+  "Vestirse bien es clave para el éxito",
+  "Soy sincero con las personas, aunque la verdad les duela",
+  "Me preocupo y ayudo a los necesitados",
+  "Invierto mucho tiempo y dinero para aprender cosas nuevas",
+  "Me gusta conocer gente y hacer nuevos amigos",
+  "Soy una persona casera, prefiero estar en casa haciendo lo mío",
+  "Prefiero hacer las cosas solo, me estresa trabajar en grupo",
+  "Me gusta tener muchos amigos y pasar tiempo con ellos",
+  "Me cuesta concentrarme porque me aburro rápido de las cosas"
+  )
+
+
+#### Paso 2: Reemplazo
+colnames(df6)[9:32] <- frases2
+
+
+
+## Pivot ----
+
+### Pivot Longer
+
+df7 <- df6 |> 
+  pivot_longer(
+    cols = all_of(apps),
+    names_to = "app",
+    values_to = "time"
+  )
+
+
+
+
+
+
+
 
 

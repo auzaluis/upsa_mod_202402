@@ -258,7 +258,9 @@ df7 <- df6 |>
   )
 
 
-
+df8 <- df7 |> 
+  pivot_wider(names_from = app,
+              values_from = time)
 
 
 

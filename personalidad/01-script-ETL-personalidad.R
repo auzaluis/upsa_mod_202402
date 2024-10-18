@@ -322,13 +322,51 @@ df9 <- df7 |>
   ungroup()
 
 
+# Tema 5: Aggregations ----
+
+## Tablas de frecuencias
+
+### Una variable
+
+df9 |> 
+  count(edadGR) |> 
+  arrange(desc(n)) |> 
+  mutate(prop = n/sum(n),
+         porcentaje = scales::percent(prop))
+
+## Dos variables
+
+df9 |> 
+  group_by(Sexo) |> 
+  count(edadGR) |> 
+  arrange(Sexo) |> 
+  mutate(prop = n/sum(n),
+         porcentaje = scales::percent(prop)) |> 
+  ungroup()
 
 
 
+df9 |> 
+  group_by(Sexo) |> 
+  count(edadGR) |> 
+  arrange(Sexo) |> 
+  ungroup()|> 
+  mutate(prop = n/sum(n),
+         porcentaje = scales::percent(prop)) 
 
 
 
+## Tablas
 
+df9 |> 
+  group_by(app, Sexo) |> 
+  summarise(
+    conteo = n(),
+    promedio = mean(time),
+    desv = sd(time),
+    min = min(time),
+    max = max(time)
+  )
 
 
 

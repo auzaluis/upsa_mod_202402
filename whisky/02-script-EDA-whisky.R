@@ -127,7 +127,9 @@ prop.table(table(DF4), margin = 2)
 library(FactoMineR)
 FactoMineR::CA(table(DF4))
 
-
+# Exportando a formato parquet
+library(arrow)
+write_parquet(DF3, "whisky/data-whisky.parquet")
 
 
 
